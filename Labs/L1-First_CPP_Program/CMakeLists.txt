@@ -22,3 +22,15 @@ target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_lib gtest_main)
 
 # Добавление тестов в тестовый набор
 add_test(NAME ${PROJECT_NAME}_tests COMMAND ${PROJECT_NAME}_tests)
+
+set_target_properties(${PROJECT_NAME}_exe PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+)
+
+set_target_properties(${PROJECT_NAME}_tests PROPERTIES
+        RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}
+)

@@ -14,6 +14,10 @@ long long getOnes(long long n) {
 }
 
 long long countOnes(long long a, long long b){
+    if (a == 0)
+    {
+        a = 1;
+    }
     long long res = getOnes(b) - getOnes(a - 1);
     return res;
 }

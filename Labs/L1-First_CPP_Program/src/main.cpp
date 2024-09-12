@@ -3,13 +3,13 @@
 
 int main() {
     long long a, b;
-    std::cout << "enter a: ";
+    std::cout << "Enter a:       ";
     std::cin >> a;
-    std::cout << "enter b: ";
+    std::cout << "Enter b:       ";
     std::cin >> b;
 
 
 
-    std::cout << countOnes(a, b) << std::endl;
+    std::cout << "The answer is: " << countOnes(a, b) << std::endl;
     return 0;
 }

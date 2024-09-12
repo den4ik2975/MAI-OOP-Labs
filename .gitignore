@@ -1,5 +1,5 @@
 /googletest/
-/cmake-build-debug/
+/cmake-build-dev/
 /.devcontainer/
 /build/
 
@@ -19,6 +19,7 @@ Makefile
 # Игнорировать файлы, создаваемые IDE
 .vscode/
 .idea/
+.cache
 *.user
 
 # Игнорировать временные файлы
