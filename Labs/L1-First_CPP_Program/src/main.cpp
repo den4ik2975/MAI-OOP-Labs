@@ -9,6 +9,6 @@ int main() {
     std::cout << "Enter b: ";
     std::cin >> b;
 
-    std::cout << "The answer is: " << CountOnes(a, b) << std::endl;
+    std::cout << "The answer is: " << CountOnes(a, b) << '\n';
     return 0;
 }
