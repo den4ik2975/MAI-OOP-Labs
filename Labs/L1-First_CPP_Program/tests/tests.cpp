@@ -3,27 +3,27 @@
 
 TEST(test_01, basic_test_set)
 {
-    ASSERT_TRUE(countOnes(2,7)==11);
+    ASSERT_TRUE(CountOnes(2,7)==11);
 }
 
 TEST(test_02, basic_test_set)
 {
-    ASSERT_TRUE(countOnes(0,0)==0);
+    ASSERT_TRUE(CountOnes(0,0)==0);
 }
 
 TEST(test_03, basic_test_set)
 {
-    ASSERT_TRUE(countOnes(7,7)==3);
+    ASSERT_TRUE(CountOnes(7,7)==3);
 }
 
 TEST(test_04, basic_test_set)
 {
-    ASSERT_TRUE(countOnes(8,8)==1);
+    ASSERT_TRUE(CountOnes(8,8)==1);
 }
 
 TEST(test_05, basic_test_set)
 {
-    ASSERT_TRUE(countOnes(0,63)==192);
+    ASSERT_TRUE(CountOnes(0,63)==192);
 }
 
 int main(int argc, char **argv) {

@@ -1,23 +1,23 @@
 #include "../headers/counter.h"
 
-#include <iostream>
+#include <cstdint>
 
-long long getOnes(long long n) {
+// Helper function to count ones up to n
+static int64_t GetOnes(int64_t n) {
     if (n == 0) return 0;
-    long long powerOf2 = 1;
-    int bitPosition = 0;
-    while ((powerOf2 << 1) <= n) {
-        powerOf2 <<= 1;
-        bitPosition++;
+    int64_t power_of_2 = 1;
+    int bit_position = 0;
+    while ((power_of_2 << 1) <= n) {
+        power_of_2 <<= 1;
+        bit_position++;
     }
-    return (bitPosition * powerOf2 / 2) + (n - powerOf2 + 1) + getOnes(n - powerOf2);
+    return (bit_position * power_of_2 / 2) + (n - power_of_2 + 1) +
+           GetOnes(n - power_of_2);
 }
 
-long long countOnes(long long a, long long b){
-    if (a == 0)
-    {
+int64_t CountOnes(int64_t a, int64_t b) {
+    if (a == 0) {
         a = 1;
     }
-    long long res = getOnes(b) - getOnes(a - 1);
-    return res;
+    return GetOnes(b) - GetOnes(a - 1);
 }
