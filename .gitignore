@@ -1,5 +1,6 @@
 /googletest/
-/cmake-build-dev/
+/cmake-build-lab2/
+/cmake-build-lab1/
 /.devcontainer/
 /build/
 
