@@ -5,21 +5,21 @@
 #include <cstring>
 #include <vector>
 
-Decimal::Decimal() : capacity(1), length(1) {
+Decimal::Decimal() : length(1) {
     digits = new unsigned char[1];
     digits[0] = 0;
 }
 
 
-Decimal::Decimal(const size_t& n, unsigned char t) : capacity(n), length(n) {
+Decimal::Decimal(const size_t& n, unsigned char t) : length(n) {
     if (t > 9) throw std::invalid_argument("Digit must be between 0 and 9");
-    digits = new unsigned char[capacity];
+    digits = new unsigned char[length];
     std::fill_n(digits, length, t);
 }
 
 
-Decimal::Decimal(const std::initializer_list<unsigned char>& t) : capacity(t.size()), length(t.size()) {
-    digits = new unsigned char[capacity];
+Decimal::Decimal(const std::initializer_list<unsigned char>& t) : length(t.size()) {
+    digits = new unsigned char[length];
     std::vector<unsigned char> temp;
     temp.reserve(t.size());
 
@@ -36,22 +36,21 @@ Decimal::Decimal(const std::initializer_list<unsigned char>& t) : capacity(t.siz
 }
 
 
-Decimal::Decimal(const std::string& t) : capacity(t.length()), length(t.length()) {
-    digits = new unsigned char[capacity];
+Decimal::Decimal(const std::string& t) : length(t.length()) {
+    digits = new unsigned char[length];
     for (size_t i = 0; i < length; ++i) {
         if (!std::isdigit(t[length - 1 - i])) throw std::invalid_argument("Invalid digit in string");
         digits[i] = t[length - 1 - i] - '0';
     }
 }
 
-Decimal::Decimal(const Decimal& other) : capacity(other.capacity), length(other.length) {
-    digits = new unsigned char[capacity];
+Decimal::Decimal(const Decimal& other) : length(other.length) {
+    digits = new unsigned char[length];
     std::memcpy(digits, other.digits, length * sizeof(unsigned char));
 }
 
-Decimal::Decimal(Decimal&& other) noexcept : digits(other.digits), capacity(other.capacity), length(other.length) {
+Decimal::Decimal(Decimal&& other) noexcept : digits(other.digits), length(other.length) {
     other.digits = nullptr;
-    other.capacity = 0;
     other.length = 0;
 }
 
@@ -62,9 +61,8 @@ Decimal::~Decimal() noexcept {
 void Decimal::copy(const Decimal& other) {
     if (this != &other) {
         delete[] digits;
-        capacity = other.capacity;
         length = other.length;
-        digits = new unsigned char[capacity];
+        digits = new unsigned char[length];
         // Ого, в cpp есть функция, которая срет мемами)
         std::memcpy(digits, other.digits, length * sizeof(unsigned char));
     }
@@ -74,10 +72,8 @@ void Decimal::move(Decimal&& other) noexcept {
     if (this != &other) {
         delete[] digits;
         digits = other.digits;
-        capacity = other.capacity;
         length = other.length;
         other.digits = nullptr;
-        other.capacity = 0;
         other.length = 0;
     }
 }

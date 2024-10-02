@@ -35,11 +35,9 @@ public:
 
 private:
     unsigned char* digits;
-    size_t capacity;
     size_t length;
 
     // Короче я хз можно ли использовать конструкторы для copy и move, поэтому написал функции на всякий случай
-    void resize(size_t newCapacity);
     void copy(const Decimal& other);
     void move(Decimal&& other) noexcept;
 };
