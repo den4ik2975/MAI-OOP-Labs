@@ -1,8 +1,7 @@
 /googletest/
-/cmake-build-lab2/
-/cmake-build-lab1/
 /.devcontainer/
-/build/
+/builds/
+/cmake-build-release/
 
 # Игнорировать файлы и папки, создаваемые CMake
 CMakeCache.txt
