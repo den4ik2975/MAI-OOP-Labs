@@ -5,9 +5,29 @@
 #include <vector>
 #include <algorithm>
 
+class Point {
+public:
+    double x, y;
+
+    explicit Point(double x = 0, double y = 0) : x(x), y(y) {}
+
+    bool operator<(const Point& other) const {
+        if (x == other.x) {
+            return y < other.y;
+        }
+        return x < other.x;
+    }
+
+    bool operator==(const Point& other) const {
+        return x == other.x && y == other.y;
+    }
+};
+
+
+
 class Figure {
 protected:
-    std::vector<std::pair<double, double>> vertices;
+    std::vector<Point> vertices;
 
 public:
     Figure() = default;
@@ -15,8 +35,31 @@ public:
     Figure(Figure&& other) noexcept = default;
     virtual ~Figure() = default;
 
-    virtual std::pair<double, double> getCenter() const = 0;
-    virtual explicit operator double() const = 0;
+    // Подсчет центра не отличается
+    virtual Point getCenter() const {
+        double x = 0;
+        double y = 0;
+
+        for (auto vertice : vertices) {
+            x += vertice.x;
+            y += vertice.y;
+        }
+
+        return Point(x / vertices.size(), y / vertices.size());
+    }
+
+    // Так же как и подсчет площади (Теорема Гаусса)
+    virtual explicit operator double() const {
+        double area = 0.0;
+        int j = vertices.size() - 1;
+
+        for (int i = 0; i < vertices.size(); i++) {
+            area += (vertices[j].x + vertices[i].x) * (vertices[j].y - vertices[i].y);
+            j = i;
+        }
+
+        return std::abs(area / 2.0);
+    }
 
     friend std::ostream& operator<<(std::ostream& os, const Figure& figure){
         figure.print(os);
@@ -44,15 +87,12 @@ public:
             return false;
         }
 
-        // Создаем копии векторов вершин для сортировки
         auto thisVertices = vertices;
         auto otherVertices = otherFigure.vertices;
 
-        // Сортируем вершины
         std::sort(thisVertices.begin(), thisVertices.end());
         std::sort(otherVertices.begin(), otherVertices.end());
 
-        // Сравниваем отсортированные вершины
         return thisVertices == otherVertices;
     }
 };

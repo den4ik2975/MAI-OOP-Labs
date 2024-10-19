@@ -23,7 +23,7 @@ void Array::printAll() const {
     for (const auto& figure : figures) {
         std::cout << *figure << std::endl;
         auto center = figure->getCenter();
-        std::cout << "Center: (" << center.first << ", " << center.second << ")" << std::endl;
+        std::cout << "Center: (" << center.x << ", " << center.y << ")" << std::endl;
         std::cout << "Area: " << static_cast<double>(*figure) << std::endl;
         std::cout << std::endl;
     }

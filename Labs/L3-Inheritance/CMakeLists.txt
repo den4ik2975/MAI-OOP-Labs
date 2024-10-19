@@ -9,10 +9,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=maybe-uninitialized")
 
 # Add source files
 set(SOURCES
-        src/program/figures/triangle.cpp
-        src/program/figures/rectangle.cpp
-        src/program/figures/square.cpp
+        src/program/figures/pentagon.cpp
+        src/program/figures/hexagon.cpp
+        src/program/figures/octagon.cpp
+        src/program/utils.cpp
         src/program/array.cpp
+        src/program/utils.cpp
 )
 
 # Add header files
