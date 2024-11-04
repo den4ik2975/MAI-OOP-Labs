@@ -28,6 +28,7 @@ char getch() {
 
 void clearScreen() {
     std::cout << "\033[2J\033[1;1H";
+    //system("clear");
 }
 
 void printMenu(const std::vector<std::string>& options, int selectedIndex) {

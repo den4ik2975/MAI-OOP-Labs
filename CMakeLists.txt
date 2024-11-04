@@ -18,6 +18,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 option(BUILD_LAB1 "Build Lab 1" OFF)
 option(BUILD_LAB2 "Build Lab 2" OFF)
 option(BUILD_LAB3 "Build Lab 3" OFF)
+option(BUILD_LAB4 "Build Lab 4" OFF)
 
 
 # Добавление подпроектов в зависимости от опций
@@ -31,4 +32,8 @@ endif()
 
 if(BUILD_LAB3)
     add_subdirectory(Labs/L3-Inheritance)
+endif()
+
+if(BUILD_LAB4)
+    add_subdirectory(Labs/L4-Basics_of_metaprogramming)
 endif()

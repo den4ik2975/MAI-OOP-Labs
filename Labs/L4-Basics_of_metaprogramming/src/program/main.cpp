@@ -8,7 +8,7 @@
 #include "utils.h"
 
 int main() {
-    Array<Figure<double> > figures;  // Note the space between > >
+    Array<Figure<double> > figures;
 
     while (true) {
         MenuOption selectedOption = getSelectedOption();
@@ -45,6 +45,7 @@ int main() {
         } else {
             std::cout << "Figure was not added due to validation failure.\n";
         }
+        waitForKeyPress();
     }
 
     return 0;

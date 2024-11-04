@@ -5,6 +5,8 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
+#include <cmath>
+
 #include "../point.h"
 
 template<Scalar T>
@@ -35,7 +37,9 @@ public:
             x += vertex->get_x();
             y += vertex->get_y();
         }
-        return Point<T>(x / vertices_.size(), y / vertices_.size());
+        auto center_x = x / vertices_.size();
+        auto center_y = y / vertices_.size();
+        return Point<T>(std::round(center_x * 100000.0) / 100000.0, std::round(center_y * 100000.0) / 100000.0);
     }
 
     virtual explicit operator double() const {

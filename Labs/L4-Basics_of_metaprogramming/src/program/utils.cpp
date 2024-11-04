@@ -45,6 +45,13 @@ void printMenu(const std::vector<std::string>& options, int selectedIndex) {
     }
 }
 
+void waitForKeyPress() {
+    std::cout << "\nPress Enter to continue...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
+
+
 MenuOption getSelectedOption() {
     std::vector<std::string> options = {"Pentagon", "Hexagon", "Octagon", "End"};
     int selectedIndex = 0;

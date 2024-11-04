@@ -26,9 +26,12 @@ char getch();
 void clearScreen();
 void printMenu(const std::vector<std::string>& options, int selectedIndex);
 MenuOption getSelectedOption();
+void waitForKeyPress();
 
 template<Scalar T>
 bool getCoordinates(const std::string& shapeName, std::shared_ptr<Figure<T>>& shape) {
+    clearScreen();
+    std::cout << "Pay attention: enter the coordinates clockwise!" << '\n';
     std::cout << "Enter coordinates for " << shapeName << ":\n";
     shape->read(std::cin);
 

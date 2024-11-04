@@ -29,13 +29,13 @@ private:
 
         // Check distances from center to vertices (radii)
         for (size_t i = 0; i < vertex_count; ++i) {
-            std::cout << distance(polygon.get_vertex(i), center) << '\n';
+            //std::cout << distance(polygon.get_vertex(i), center) << '\n';
             radii.push_back(distance(polygon.get_vertex(i), center));
         }
 
         // Check side lengths
         for (size_t i = 0; i < vertex_count; ++i) {
-            std::cout << distance(polygon.get_vertex(i), polygon.get_vertex((i + 1) % vertex_count)) << '\n';
+            //std::cout << distance(polygon.get_vertex(i), polygon.get_vertex((i + 1) % vertex_count)) << '\n';
             side_lengths.push_back(distance(polygon.get_vertex(i),
                                          polygon.get_vertex((i + 1) % vertex_count)));
         }

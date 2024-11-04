@@ -8,7 +8,7 @@
 #include "figures/octagon.h"
 
 
-class RectangleTest : public ::testing::Test {
+class PentagonTest : public ::testing::Test {
 protected:
     Pentagon pentagon1;
     Pentagon pentagon2;
@@ -16,7 +16,7 @@ protected:
 };
 
 
-TEST_F(RectangleTest, ReadAndPrint) {
+TEST_F(PentagonTest, ReadAndPrint) {
     std::stringstream input("0 0 2 -2 4 0 4 4 0 4");
     std::stringstream output;
 
@@ -28,7 +28,7 @@ TEST_F(RectangleTest, ReadAndPrint) {
     EXPECT_NEAR(center.y, 1.2, 1e-6);
 }
 
-TEST_F(RectangleTest, Area) {
+TEST_F(PentagonTest, Area) {
     std::stringstream input("0 0 2 -2 4 0 4 4 0 4");
     std::stringstream output;
 
@@ -38,7 +38,7 @@ TEST_F(RectangleTest, Area) {
     EXPECT_NEAR(static_cast<double>(pentagon1), 20.0, 1e-6);
 }
 
-TEST_F(RectangleTest, Print) {
+TEST_F(PentagonTest, Print) {
     std::stringstream input("0 0 2 -2 4 0 4 4 0 4");
     std::stringstream output;
     Pentagon Pentagon;
@@ -49,7 +49,7 @@ TEST_F(RectangleTest, Print) {
     EXPECT_EQ(output.str(), "Pentagon:\n(0, 0)\n(2, -2)\n(4, 0)\n(4, 4)\n(0, 4)\n");
 }
 
-TEST_F(RectangleTest, Clone) {
+TEST_F(PentagonTest, Clone) {
     std::stringstream input("0 0 2 -2 4 0 4 4 0 4");
     std::stringstream output;
 
@@ -61,7 +61,7 @@ TEST_F(RectangleTest, Clone) {
     EXPECT_EQ(*cloned, pentagon1);
 }
 
-TEST_F(RectangleTest, Equality) {
+TEST_F(PentagonTest, Equality) {
     std::stringstream input1("0 0 2 -2 4 0 4 4 0 4");
     std::stringstream output1;
 

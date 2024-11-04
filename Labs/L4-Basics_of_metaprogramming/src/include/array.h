@@ -33,7 +33,9 @@ public:
     void print_all() const {
         for (const auto& figure : data_) {
             figure->print(std::cout);
+            auto center = figure->get_center();
             std::cout << "Area: " << static_cast<double>(*figure) << "\n";
+            std::cout << "Center: " << center.get_x() << ' ' << center.get_y() << '\n';
         }
     }
 
