@@ -20,6 +20,7 @@ option(BUILD_LAB2 "Build Lab 2" OFF)
 option(BUILD_LAB3 "Build Lab 3" OFF)
 option(BUILD_LAB4 "Build Lab 4" OFF)
 option(BUILD_LAB5 "Build Lab 5" OFF)
+option(BUILD_LAB6 "Build Lab 6" OFF)
 
 
 # Добавление подпроектов в зависимости от опций
@@ -41,4 +42,8 @@ endif()
 
 if(BUILD_LAB5)
     add_subdirectory(Labs/L5-Iterators_and_allocators)
+endif()
+
+if(BUILD_LAB6)
+    add_subdirectory(Labs/L6-Design_patterns)
 endif()
