@@ -16,6 +16,7 @@ public:
     virtual ~Npc() = default;
 
     virtual void accept(NpcVisitor& visitor) = 0;
+    virtual std::string getEmojiType() const = 0;
     virtual std::string getType() const = 0;
 
     std::string getName() const { return name; }
@@ -33,6 +34,7 @@ class Bandit : public Npc {
 public:
     Bandit(const std::string& name, int x, int y) : Npc(name, x, y) {}
     void accept(NpcVisitor& visitor) override;
+    std::string getEmojiType() const override { return "🔫"; }
     std::string getType() const override { return "Bandit"; }
 };
 
@@ -40,6 +42,7 @@ class Knight : public Npc {
 public:
     Knight(const std::string& name, int x, int y) : Npc(name, x, y) {}
     void accept(NpcVisitor& visitor) override;
+    std::string getEmojiType() const override { return "⚔️"; }
     std::string getType() const override { return "Knight"; }
 };
 
@@ -47,5 +50,7 @@ class Elf : public Npc {
 public:
     Elf(const std::string& name, int x, int y) : Npc(name, x, y) {}
     void accept(NpcVisitor& visitor) override;
+    std::string getEmojiType() const override { return "🏹"; }
     std::string getType() const override { return "Elf"; }
+
 };

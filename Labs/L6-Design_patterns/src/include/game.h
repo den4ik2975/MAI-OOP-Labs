@@ -47,10 +47,14 @@ public:
                     npcs[j]->accept(visitor2);
 
                     if (visitor1.isKilled()) {
-                        killed.push_back({i, npcs[i]->getName(), npcs[j]->getName()});
+                        killed.push_back({i,
+                            npcs[i]->getEmojiType() + ' ' + npcs[i]->getName(),
+                            npcs[j]->getEmojiType() + ' ' + npcs[j]->getName()});
                     }
                     if (visitor2.isKilled()) {
-                        killed.push_back({j, npcs[j]->getName(), npcs[i]->getName()});
+                        killed.push_back({j,
+                            npcs[j]->getEmojiType() + ' ' + npcs[j]->getName(),
+                            npcs[i]->getEmojiType() + ' ' + npcs[i]->getName()});
                     }
                 }
             }
@@ -96,7 +100,7 @@ public:
 
     void printNpcs() const {
         for (const auto& npc : npcs) {
-            std::cout << npc->getType() << " " << npc->getName()
+            std::cout << npc->getEmojiType() << " " << npc->getName()
                      << " at (" << npc->getX() << "," << npc->getY() << ")"
                      << std::endl;
         }

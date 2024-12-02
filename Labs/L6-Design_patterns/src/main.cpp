@@ -232,18 +232,30 @@ void addNpcMenu(Game& game) {
 
     // Rest of the function remains the same
     disableRawMode();
-    std::cout << "Enter name: ";
+    std::cout << "\x1B[34mEnter name: \033[0m";
     std::cin >> name;
 
-    std::cout << "Enter X and Y coordinates (0-500) separated by space: ";
-    std::cin >> x >> y;
+    std::cout << "\x1B[34mEnter X and Y coordinates (0-500) separated by space: \033[0m";
+    while (!(std::cin >> x >> y) || x < 0 || x > 500 || y < 0 || y > 500) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "\x1B[31mInvalid coordinates! Please enter numbers between 0 and 500: \033[0m";
+    }
 
     try {
         game.addNpc(NpcFactory::createNpc(type, name, x, y));
-        std::cout << "NPC added successfully!\n";
+        std::cout << "\033[1;32mNPC added successfully!\033[0m\n";
+        std::cout << "\nPress Enter to continue...";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
     } catch (const std::exception& e) {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cout << "\x1B[31mError: " << e.what() << "\033[0m" << std::endl;
+        std::cout << "\nPress Enter to continue...";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.get();
     }
+
+
     enableRawMode();
 }
 
@@ -273,7 +285,7 @@ int main() {
                 }
                 case 2: {
                     disableRawMode();
-                    std::cout << "\nCurrent NPCs:\n";
+                    std::cout << "\n\x1B[34mCurrent NPCs:\033[0m\n";
                     game.printNpcs();
                     std::cout << "\nPress Enter to continue...";
                     std::cin.ignore(100, '\n');
@@ -284,9 +296,9 @@ int main() {
                 case 3: {
                     disableRawMode();
                     double range;
-                    std::cout << "Enter combat range: ";
+                    std::cout << "\x1B[34mEnter combat range: \033[0m";
                     std::cin >> range;
-                    std::cout << "\nStarting combat...\n";
+                    std::cout << "\n\x1B[31mStarting combat...\033[0m\n";
                     game.combat(range);
                     std::cout << "\nPress Enter to continue...";
                     std::cin.ignore(100, '\n');
@@ -297,10 +309,10 @@ int main() {
                 case 4: {
                     disableRawMode();
                     std::string filename;
-                    std::cout << "Enter filename to save: ";
+                    std::cout << "\x1B[34mEnter filename to save: \033[0m";
                     std::cin >> filename;
                     game.saveToFile(filename);
-                    std::cout << "Game saved to " << filename << std::endl;
+                    std::cout << "\033[1;32mGame saved to " << filename << "\033[0m" << std::endl;
                     std::cout << "\nPress Enter to continue...";
                     std::cin.ignore(100, '\n');
                     std::cin.get();
@@ -310,11 +322,11 @@ int main() {
                 case 5: {
                     disableRawMode();
                     std::string filename;
-                    std::cout << "Enter filename to load: ";
+                    std::cout << "\x1B[34mEnter filename to load: \033[0m";
                     std::cin >> filename;
                     try {
                         game.loadFromFile(filename);
-                        std::cout << "Game loaded from " << filename << std::endl;
+                        std::cout << "\033[1;32mGame loaded from \033[0m" << filename << std::endl;
                     } catch (const std::exception& e) {
                         std::cout << "Error loading file: " << e.what() << std::endl;
                     }

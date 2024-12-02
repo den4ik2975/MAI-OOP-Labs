@@ -12,7 +12,7 @@ public:
 class ConsoleObserver : public Observer {
 public:
     void onKill(const std::string& killer, const std::string& victim) override {
-        std::cout << killer << " killed " << victim << std::endl;
+        std::cout << killer << " 💀 " << victim << std::endl;
     }
 };
 
@@ -21,7 +21,7 @@ class FileObserver : public Observer {
 public:
     FileObserver() : file("log.txt", std::ios::app) {}
     void onKill(const std::string& killer, const std::string& victim) override {
-        file << killer << " killed " << victim << std::endl;
+        file << killer << " 💀 " << victim << std::endl;
     }
 };
 
