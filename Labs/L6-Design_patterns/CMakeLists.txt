@@ -12,6 +12,7 @@ set(SOURCES
         src/visitor.cpp
         src/factory.cpp
         src/npc.cpp
+        src/utils.cpp
 )
 
 # Add header files
