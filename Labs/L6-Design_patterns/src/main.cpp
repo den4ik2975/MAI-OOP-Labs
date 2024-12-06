@@ -33,27 +33,40 @@ int main() {
                     break;
                 }
                 case 2: {
-                    disableRawMode();
-                    std::cout << "\n\x1B[34mCurrent NPCs:\033[0m\n";
-                    game.printNpcs();
-                    std::cout << "\nPress Enter to continue...";
-                    std::cin.ignore(100, '\n');
-                    std::cin.get();
-                    enableRawMode();
-                    break;
+                        disableRawMode();
+                        std::cout << "\n\x1B[34mCurrent NPCs:\033[0m\n";
+                        game.printNpcs();
+                        std::cout << "\nPress Enter to continue...";
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        enableRawMode();
+                        break;
                 }
                 case 3: {
-                    disableRawMode();
-                    double range;
-                    std::cout << "\x1B[34mEnter combat range: \033[0m";
-                    std::cin >> range;
-                    std::cout << "\n\x1B[31mStarting combat...\033[0m\n";
-                    game.combat(range);
-                    std::cout << "\nPress Enter to continue...";
-                    std::cin.ignore(100, '\n');
-                    std::cin.get();
-                    enableRawMode();
-                    break;
+                        disableRawMode();
+                        double range;
+                        bool validRange = false;
+                        do {
+                            std::cout << "\x1B[34mEnter combat range (0-2000): \033[0m";
+                            if (std::cin >> range) {
+                                if (range >= 0 && range <= 2000) {
+                                    validRange = true;
+                                } else {
+                                    std::cout << "\x1B[31mInvalid range! Please enter a value between 0 and 2000.\033[0m\n";
+                                }
+                            } else {
+                                std::cin.clear();
+                                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                                std::cout << "\x1B[31mInvalid input! Please enter a number.\033[0m\n";
+                            }
+                        } while (!validRange);
+
+                        std::cout << "\n\x1B[31mStarting combat...\033[0m\n";
+                        game.combat(range);
+                        std::cout << "\nPress Enter to continue...";
+                        std::cin.ignore(100, '\n');
+                        std::cin.get();
+                        enableRawMode();
+                        break;
                 }
                 case 4: {
                     disableRawMode();
