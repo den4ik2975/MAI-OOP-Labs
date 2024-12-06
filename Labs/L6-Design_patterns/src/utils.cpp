@@ -55,8 +55,8 @@ void printMenu(int selectedOption) {
      |  _ \      | |                       |  ____|  | |        |___ \
      | |_) | __ _| | __ _  __ _ _   _ _ __ | |__ __ _| |_ ___    __) |
      |  _ < / _` | |/ _` |/ _` | | | | '__||  __/ _` | __/ _ \  |__ <
-     | |_) | (_| | | (_| | (_| | |_| | |    | | | (_| | ||  __/  ___) |
-     |____/ \__,_|_|\__,_|\__, |\__,_|_|    |_|  \__,_|\__\___| |____/
+     | |_) | (_| | | (_| | (_| | |_| | |    | | | (_| | || __/  ___) |
+     |____/ \__,_|_|\__,_|\__, |\__,_|_|    |_| \__,_|\__\___| |____/
                            __/ |
                           |___/
     )" << "\n";
@@ -163,7 +163,7 @@ void addNpcMenu(Game& game) {
     while (!typeSelected) {
         system("clear");
 
-        std::vector<std::stringstream> artLines(22); // Assuming max height of 15 lines
+        std::vector<std::stringstream> artLines(22); // Assuming max height of 22 lines
 
         // Modify the art display code:
         for (int i = 0; i < NUM_TYPES; i++) {
