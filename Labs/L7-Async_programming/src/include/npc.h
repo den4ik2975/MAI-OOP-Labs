@@ -1,88 +1,64 @@
+// npc.h
 #pragma once
-#include <string>
-#include <memory>
-#include <cmath>
+#include <mutex>
+#include <shared_mutex>
 #include <random>
-#include <atomic>
+#include <iostream>
 
-class NpcVisitor;
-
-class Npc {
+class NPC {
 protected:
-    std::string name;
-    std::atomic<int> x;
-    std::atomic<int> y;
-    std::atomic<bool> alive;
-    const int moveDistance;
-    const int killDistance;
+    int x, y;
+    bool alive;
+    char symbol;
+    std::shared_mutex mutex;
 
 public:
-    Npc(const std::string& name, int x, int y, int moveDistance, int killDistance)
-        : name(name), x(x), y(y), alive(true), moveDistance(moveDistance), killDistance(killDistance) {}
-    virtual ~Npc() = default;
+    NPC(int startX, int startY, char sym)
+        : x(startX), y(startY), alive(true), symbol(sym) {}
 
-    virtual void accept(NpcVisitor& visitor) = 0;
-    virtual std::string getEmojiType() const = 0;
-    virtual std::string getLetterType() const = 0;
-    virtual std::string getType() const = 0;
+    virtual ~NPC() = default;
 
-    std::string getName() const { return name; }
-    int getX() const { return x; }
-    int getY() const { return y; }
+    virtual int getMoveDistance() const = 0;
+    virtual int getKillDistance() const = 0;
+
     bool isAlive() const { return alive; }
     void kill() { alive = false; }
-    int getMoveDistance() const { return moveDistance; }
-    int getKillDistance() const { return killDistance; }
 
-    void move(int dx, int dy) {
-        int newX = x + dx;
-        int newY = y + dy;
-        if (newX >= 0 && newX < 50 && newY >= 0 && newY < 50) {
-            x = newX;
-            y = newY;
-        }
+    int getX() const { return x; }
+    int getY() const { return y; }
+    char getSymbol() const { return symbol; }
+
+    void move(int newX, int newY) {
+        std::lock_guard<std::shared_mutex> lock(mutex);
+        x = newX;
+        y = newY;
     }
 
-    int rollDice() const {
+    static int rollDice() {
         static std::random_device rd;
         static std::mt19937 gen(rd());
         static std::uniform_int_distribution<> dis(1, 6);
         return dis(gen);
     }
-
-    double getDistance(const Npc& other) const {
-        int dx = x - other.x;
-        int dy = y - other.y;
-        return sqrt(dx*dx + dy*dy);
-    }
 };
 
-class Bandit : public Npc {
+class Knight : public NPC {
 public:
-    Bandit(const std::string& name, int x, int y)
-        : Npc(name, x, y, 10, 10) {}
-    void accept(NpcVisitor& visitor) override;
-    std::string getEmojiType() const override { return "🔫"; }
-    std::string getLetterType() const override { return "B"; }
-    std::string getType() const override { return "Bandit"; }
+    Knight(int x, int y) : NPC(x, y, 'K') {}
+    int getMoveDistance() const override { return 30; }
+    int getKillDistance() const override { return 10; }
 };
 
-class Knight : public Npc {
+class Elf : public NPC {
 public:
-    Knight(const std::string& name, int x, int y)
-        : Npc(name, x, y, 30, 10) {}
-    void accept(NpcVisitor& visitor) override;
-    std::string getEmojiType() const override { return "⚔️"; }
-    std::string getLetterType() const override { return "K"; }
-    std::string getType() const override { return "Knight"; }
+    Elf(int x, int y) : NPC(x, y, 'E') {}
+    int getMoveDistance() const override { return 10; }
+    int getKillDistance() const override { return 50; }
 };
 
-class Elf : public Npc {
+class Bandit : public NPC {
 public:
-    Elf(const std::string& name, int x, int y)
-        : Npc(name, x, y, 10, 50) {}
-    void accept(NpcVisitor& visitor) override;
-    std::string getEmojiType() const override { return "🏹"; }
-    std::string getLetterType() const override { return "E"; }
-    std::string getType() const override { return "Elf"; }
+    Bandit(int x, int y) : NPC(x, y, 'B') {}
+    int getMoveDistance() const override { return 10; }
+    int getKillDistance() const override { return 10; }
 };

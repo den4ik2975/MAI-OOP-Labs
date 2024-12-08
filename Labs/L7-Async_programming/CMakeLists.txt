@@ -8,12 +8,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror=maybe-uninitialized")
 
 # Add source files
 set(SOURCES
+        src/game.cpp
         src/main.cpp
-        src/visitor.cpp
-        src/factory.cpp
-        src/npc.cpp
-        src/utils.cpp
-        src/threadManager.cpp
 )
 
 # Add header files
