@@ -28,6 +28,7 @@ private:
     void moveNPCs();
     void processBattles();
     void displayMap();
+    void displayMapWithoutSleep();
     double calculateDistance(const NPC& npc1, const NPC& npc2);
 
 public:

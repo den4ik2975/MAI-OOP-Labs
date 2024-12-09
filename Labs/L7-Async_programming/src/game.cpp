@@ -30,27 +30,7 @@ Game::Game(int duration) : gameRunning(true), gameDuration(duration) {
 }
 
 void Game::run() {
-    std::vector<std::vector<char>> map(MAP_SIZE,
-                                           std::vector<char>(MAP_SIZE, '.'));
-
-    for (const auto& npc : npcs) {
-        if (npc->isAlive()) {
-            map[npc->getY()][npc->getX()] = npc->getSymbol();
-        }
-    }
-
-    {
-        //system("clear");
-        std::cout << "Map!" << '\n';
-        for (const auto& row : map) {
-            for (char cell : row) {
-                std::cout << cell;
-            }
-            std::cout << '\n';
-        }
-        }
-
-
+    displayMapWithoutSleep();
     std::cout << "Starting positions above. Game begins in 3 seconds...\n";
     std::this_thread::sleep_for(std::chrono::seconds(3));
 
@@ -185,6 +165,29 @@ void Game::displayMap() {
                 }
                 std::cout << '\n';
             }
+        }
+    }
+}
+
+void Game::displayMapWithoutSleep()
+{
+    std::vector<std::vector<char>> map(MAP_SIZE,
+                                       std::vector<char>(MAP_SIZE, '.'));
+
+    for (const auto& npc : npcs) {
+        if (npc->isAlive()) {
+            map[npc->getY()][npc->getX()] = npc->getSymbol();
+        }
+    }
+
+    {
+        //system("clear");
+        std::cout << "Map!" << '\n';
+        for (const auto& row : map) {
+            for (char cell : row) {
+                std::cout << cell;
+            }
+            std::cout << '\n';
         }
     }
 }
