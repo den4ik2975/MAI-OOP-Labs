@@ -2,27 +2,27 @@
 
 void CombatVisitor::visit(Bandit& bandit) {
     if (auto* elf = dynamic_cast<Elf*>(opponent)) {
-        // Nothing
+        killed = true;  // Elf dies against Bandit
     }
-    if (auto* knight = dynamic_cast<Knight*>(opponent)) {
-        killed = true;  // Bandit dies against Knight
+    else if (auto* knight = dynamic_cast<Knight*>(opponent)) {
+        // Nothing
     }
 }
 
 void CombatVisitor::visit(Knight& knight) {
     if (auto* bandit = dynamic_cast<Bandit*>(opponent)) {
-        // Nothing
+        killed = true;  // Bandit dies against Knight
     }
-    if (auto* elf = dynamic_cast<Elf*>(opponent)) {
-        killed = true;  // Knight dies against Elf
+    else if (auto* elf = dynamic_cast<Elf*>(opponent)) {
+        // Nothing
     }
 }
 
 void CombatVisitor::visit(Elf& elf) {
-    if (auto* bandit = dynamic_cast<Bandit*>(opponent)) {
-        killed = true;
-    }
     if (auto* knight = dynamic_cast<Knight*>(opponent)) {
+        killed = true;  // Knight dies against Elf
+    }
+    else if (auto* bandit = dynamic_cast<Bandit*>(opponent)) {
         // Nothing
     }
 }

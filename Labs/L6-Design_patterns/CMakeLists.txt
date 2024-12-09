@@ -27,12 +27,12 @@ add_executable(${PROJECT_NAME}_exe src/main.cpp)
 # Link the library to the executable
 target_link_libraries(${PROJECT_NAME}_exe PRIVATE ${PROJECT_NAME}_lib)
 
-#enable_testing()
-#
-#add_executable(${PROJECT_NAME}_tests tests/tests.cpp)
-#target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_lib gtest_main)
-#
-#add_test(NAME ${PROJECT_NAME}_tests COMMAND ${PROJECT_NAME}_tests)
+enable_testing()
+
+add_executable(${PROJECT_NAME}_tests tests/tests.cpp)
+target_link_libraries(${PROJECT_NAME}_tests ${PROJECT_NAME}_lib gtest_main)
+
+add_test(NAME ${PROJECT_NAME}_tests COMMAND ${PROJECT_NAME}_tests)
 
 # Set output directories
 set_target_properties(${PROJECT_NAME}_exe ${PROJECT_NAME}_lib PROPERTIES
