@@ -4,7 +4,7 @@
 #include <iostream>
 #include <iomanip>
 
-Game::Game() : gameRunning(true) {
+Game::Game(int duration) : gameRunning(true), gameDuration(duration) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, MAP_SIZE - 1);
@@ -58,7 +58,7 @@ void Game::run() {
     std::thread moveThread([this]() { moveNPCs(); });
     std::thread battleThread([this]() { processBattles(); });
 
-    std::this_thread::sleep_for(std::chrono::seconds(GAME_DURATION));
+    std::this_thread::sleep_for(std::chrono::seconds(gameDuration));
     gameRunning = false;
     battle_condition.notify_all();  // Notify battle thread to check gameRunning
 

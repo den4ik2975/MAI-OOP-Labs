@@ -16,7 +16,7 @@ class Game {
 private:
     static const int MAP_SIZE = 100;
     static const int INITIAL_NPC_COUNT = 50;
-    static const int GAME_DURATION = 30;
+    int gameDuration;
 
     std::vector<std::shared_ptr<NPC>> npcs;
     std::mutex cout_mutex;
@@ -31,6 +31,9 @@ private:
     double calculateDistance(const NPC& npc1, const NPC& npc2);
 
 public:
-    Game();
+    Game(int duration = 30);
+    const std::vector<std::shared_ptr<NPC>>& getNPCs() const {
+        return npcs;
+    }
     void run();
 };
