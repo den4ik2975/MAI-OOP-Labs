@@ -78,7 +78,6 @@ void addNpcMenu(Game& game) {
     const int NUM_TYPES = 3;
 
     // Store ASCII arts in an array
-
     std::vector<std::string> npcNames = {"Elf", "Knight", "Bandit"};
     std::vector<std::string> asciiArts = {
 
@@ -152,12 +151,6 @@ void addNpcMenu(Game& game) {
         "             V         \n"
         "           V,          \n"
         "                       \n",
-
-        // Elf ASCII art
-
-        // Bandit ASCII art
-
-
     };
 
     while (!typeSelected) {
@@ -181,7 +174,6 @@ void addNpcMenu(Game& game) {
             }
         }
 
-
         // Display all ASCII arts horizontally
         for (const auto& line : artLines) {
             std::cout << line.str() << '\n';
@@ -189,14 +181,13 @@ void addNpcMenu(Game& game) {
 
         std::cout << "\n\n";
 
-        const int SECTION_WIDTH = ART_WIDTH + PADDING;
-
         // Print names on the same line with proper centering
         for (int i = 0; i < NUM_TYPES; i++) {
             int padding = ((ART_WIDTH - npcNames[i].length()) / 2);
             if (i == selectedType - 1) {
                 std::cout << "\033[1;32m";
             }
+            // Messy shit here, but it looks nice in console :)
             if (i == 1)
             {
                 std::cout << std::string(padding - 5, ' ')

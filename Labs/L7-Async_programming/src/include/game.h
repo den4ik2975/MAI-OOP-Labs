@@ -1,9 +1,7 @@
-// game.h
 #pragma once
 #include "npc.h"
 #include <vector>
 #include <memory>
-#include <thread>
 #include <mutex>
 #include <queue>
 #include <condition_variable>

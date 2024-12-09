@@ -1,4 +1,3 @@
-// visitor.cpp
 #include "visitor.h"
 
 void CombatVisitor::visit(Bandit& bandit) {

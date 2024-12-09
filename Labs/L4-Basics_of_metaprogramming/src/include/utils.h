@@ -1,4 +1,3 @@
-// utils.h
 #ifndef OOP_LABS_UTILS_H
 #define OOP_LABS_UTILS_H
 

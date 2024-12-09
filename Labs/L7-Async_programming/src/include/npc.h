@@ -1,9 +1,7 @@
-// npc.h
 #pragma once
 #include <mutex>
 #include <shared_mutex>
 #include <random>
-#include <iostream>
 
 class NPC {
 protected:

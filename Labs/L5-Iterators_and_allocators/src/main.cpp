@@ -11,10 +11,10 @@ struct ComplexType {
 };
 
 int main() {
-    // Создаем resource с размером 1024 байта
+    // Creating resourse size of 1024 bytes
     fixed_memory_resource mem_resource(1024);
 
-    // Тест с простым типом (int)
+    // Test with simple type (int)
     {
         dynamic_array<int> arr(&mem_resource);
 
@@ -29,7 +29,7 @@ int main() {
         std::cout << "\n";
     }
 
-    // Тест со сложным типом
+    // Test with complex type
     {
         dynamic_array<ComplexType> arr(&mem_resource);
 

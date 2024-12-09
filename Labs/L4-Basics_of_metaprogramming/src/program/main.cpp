@@ -47,6 +47,4 @@ int main() {
         }
         waitForKeyPress();
     }
-
-    return 0;
 }

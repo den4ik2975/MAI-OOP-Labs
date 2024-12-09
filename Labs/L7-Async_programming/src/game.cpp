@@ -1,4 +1,3 @@
-// game.cpp
 #include "game.h"
 #include <cmath>
 #include <chrono>

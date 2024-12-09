@@ -1,4 +1,3 @@
-// main.cpp
 #include "game.h"
 
 int main() {

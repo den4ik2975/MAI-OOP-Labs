@@ -1,11 +1,7 @@
-
 #include "utils.h"
 #include <termios.h>
 #include <unistd.h>
 #include <iostream>
-#include "figures/pentagon.h"
-#include "figures/hexagon.h"
-#include "figures/octagon.h"
 #include "checker.h"
 
 

@@ -5,7 +5,6 @@
 #include <list>
 #include <iostream>
 #include <cstddef>
-#include <stdexcept>
 #include <iterator>
 
 struct MemoryBlock {

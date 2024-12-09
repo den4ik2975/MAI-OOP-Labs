@@ -1,8 +1,5 @@
-// point.h
 #ifndef POINT_H
 #define POINT_H
-
-#include <concepts>
 
 template<typename T>
 concept Scalar = std::is_arithmetic_v<T>;

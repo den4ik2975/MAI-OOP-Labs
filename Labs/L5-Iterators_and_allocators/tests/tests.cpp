@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include "memory_container.h"
 
-// Тестовая структура
+// Test struct
 struct TestStruct {
     int x;
     double y;
@@ -15,7 +15,7 @@ struct TestStruct {
     }
 };
 
-// Тест для простых типов (int)
+// Test with simple types (int)
 TEST(DynamicArrayTest, IntegerOperations) {
     fixed_memory_resource memResource(1024);
     dynamic_array<int> arr(&memResource);
@@ -36,7 +36,7 @@ TEST(DynamicArrayTest, IntegerOperations) {
     EXPECT_EQ(*it, 3);
 }
 
-// Тест для пользовательской структуры
+// Test with complex type/struct
 TEST(DynamicArrayTest, CustomStructOperations) {
     fixed_memory_resource memResource(2048);
     dynamic_array<TestStruct> arr(&memResource);
@@ -52,7 +52,7 @@ TEST(DynamicArrayTest, CustomStructOperations) {
     EXPECT_EQ(it->str, "one");
 }
 
-// Тест для memory_resource
+// Test for memory_resource
 TEST(MemoryResourceTest, AllocationDeallocation) {
     fixed_memory_resource memResource(1024);
 
@@ -65,12 +65,12 @@ TEST(MemoryResourceTest, AllocationDeallocation) {
     memResource.deallocate(p1, 256, alignof(std::max_align_t));
     memResource.deallocate(p2, 256, alignof(std::max_align_t));
 
-    // Проверяем, что можем снова выделить память после освобождения
+    // Checking if we can allocate memory again
     void* p3 = memResource.allocate(512, alignof(std::max_align_t));
     EXPECT_NE(p3, nullptr);
 }
 
-// Тест для итераторов
+// Test for iterators
 TEST(IteratorTest, BasicOperations) {
     fixed_memory_resource memResource(1024);
     dynamic_array<int> arr(&memResource);
@@ -79,7 +79,7 @@ TEST(IteratorTest, BasicOperations) {
     arr.push_back(2);
     arr.push_back(3);
 
-    // Тест operator++
+    // Test operator++
     auto it = arr.begin();
     EXPECT_EQ(*it, 1);
     ++it;
@@ -87,24 +87,24 @@ TEST(IteratorTest, BasicOperations) {
     it++;
     EXPECT_EQ(*it, 3);
 
-    // Тест сравнения итераторов
+    // Test comparing iterators
     EXPECT_TRUE(arr.begin() != arr.end());
     EXPECT_TRUE(it != arr.begin());
 }
 
-// Тест граничных случаев
+// Test for edge cases
 TEST(DynamicArrayTest, EdgeCases) {
     fixed_memory_resource memResource(64);
     dynamic_array<int> arr(&memResource);
 
-    // Тест пустого массива
+    // Empty array test
     EXPECT_EQ(arr.size(), 0);
     EXPECT_TRUE(arr.begin() == arr.end());
 
-    // Тест pop_back на пустом массиве
-    arr.pop_back(); // Не должно вызывать исключений
+    // Tests pop_back() on empty array
+    arr.pop_back();
 
-    // Тест выделения памяти больше, чем доступно
+    // Test allocate more memory than available
     EXPECT_THROW({
         for(int i = 0; i < 1000; ++i) {
             arr.push_back(i);
@@ -116,6 +116,3 @@ int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-//
-// Created by den4ik2975 on 11/10/24.
-//

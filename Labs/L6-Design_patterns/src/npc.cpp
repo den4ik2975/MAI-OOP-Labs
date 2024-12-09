@@ -1,4 +1,3 @@
-// npc.cpp
 #include "npc.h"
 #include "visitor.h"
 

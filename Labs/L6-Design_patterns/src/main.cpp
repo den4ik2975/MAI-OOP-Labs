@@ -1,11 +1,8 @@
-// main.cpp
 #include <iostream>
 #include <iomanip>
 #include "game.h"
 #include "factory.h"
 #include "utils.h"
-
-// Function to configure terminal for raw input
 
 int main() {
     Game game;

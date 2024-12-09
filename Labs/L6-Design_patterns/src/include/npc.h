@@ -1,4 +1,3 @@
-// npc.h
 #pragma once
 #include <string>
 #include <memory>
