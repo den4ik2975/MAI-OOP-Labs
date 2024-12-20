@@ -1,0 +1,12 @@
+{
+  "name": "MAI OOP Labs Container",
+  "dockerFile": "Dockerfile",
+  "context": "..",
+  "appPort": [],
+  "customizations": {
+    "jetbrains": {
+      "backend": "CLion",
+    }
+  },
+  "postCreateCommand": "git config --global --add safe.directory '*'"
+}

@@ -4,11 +4,12 @@
 #include <memory>
 #include <vector>
 #include <iostream>
+#include "figures/figure.h"
 
-template<typename T>
+template<Scalar T>
 class Array {
 private:
-    std::vector<std::shared_ptr<T>> data_;
+    std::vector<std::shared_ptr<Figure<T>>> data_;
 
 public:
     void push_back(std::shared_ptr<T> figure) {
